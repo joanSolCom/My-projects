@@ -49,8 +49,8 @@ class ValueIterationAgent(ValueEstimationAgent):
          for action in self.mdp.getPossibleActions():
             #Get for an action and a state, the transition states and probabilities. We have all data,
             #we have to compute V(s)
-            for tupleSP in self.mdp.getTransitionStatesAndProbs(state,action):
-                element = element + (tupleSP[1] * (self.mdp.getReward(state,action,tupleSP[1]) + self.discount * oldValues[tupleSP[1]]))
+            element = 0.0
+            element = self.getQValue(state,action)
             elements.add(element)
             self.values[state] = max(elements)
 
@@ -71,7 +71,12 @@ class ValueIterationAgent(ValueEstimationAgent):
       necessarily create this quantity and you may have
       to derive it on the fly.
     """
-    "*** YOUR CODE HERE ***"
+    element = 0.0
+    for tupleSP in self.mdp.getTransitionStatesAndProbs(state,action):
+      element = element + (tupleSP[1] * (self.mdp.getReward(state,action,tupleSP[1]) + self.discount * oldValues[tupleSP[1]]))
+    
+    return element
+    
     util.raiseNotDefined()
 
   def getPolicy(self, state):
@@ -82,7 +87,11 @@ class ValueIterationAgent(ValueEstimationAgent):
       there are no legal actions, which is the case at the
       terminal state, you should return None.
     """
-    "*** YOUR CODE HERE ***"
+    V = util.Counter()
+    for a in self.mdp.getPossibleActions(state):
+       V[a] = self.getQValue(state, a)
+    return V.argMax()
+
     util.raiseNotDefined()
 
   def getAction(self, state):
