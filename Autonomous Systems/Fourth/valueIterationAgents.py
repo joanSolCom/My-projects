@@ -36,7 +36,22 @@ class ValueIterationAgent(ValueEstimationAgent):
     self.iterations = iterations
     self.values = util.Counter() # A Counter is a dict with default 0
      
-    "*** YOUR CODE HERE ***"
+    i = 0
+    
+    lastValue = util.Counter()
+
+    while i < self.iterations:
+      
+      lastValue = self.values.copy()
+      #For all state S of the problem, we have to get V(s)
+      for state in self.mdp.getStates():
+         
+         for action in self.mdp.getPossibleActions():
+            #Get for an action and a state, the transition states and probabilities. We have all data,
+            #we have to compute V(s)
+            for tupleSP in self.mdp.getTransitionStatesAndProbs(state,action):
+
+      i = i + 1
     
   def getValue(self, state):
     """
