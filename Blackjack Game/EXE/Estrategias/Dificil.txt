@@ -1,0 +1,16 @@
+:global
+media :: int
+media <- 0.
+pNeeded :: int
+pNeeded <- 0.
+elegir :: int
+elegir <- 0.
+
+:main
+pNeeded > media :- elegir <- 0.
+pNeeded < media :- elegir <- 2.
+(pNeeded == media) /\ (pNeeded == 9) :- elegir <- 1.
+(pNeeded == media) /\ (pNeeded == 10) :- elegir <- 1.
+(pNeeded == media) /\ (pNeeded == 11) :- elegir <- 1.
+
+

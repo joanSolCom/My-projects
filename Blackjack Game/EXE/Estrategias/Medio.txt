@@ -1,0 +1,32 @@
+:global
+pCroup :: int
+pCroup <- 0.
+pTeva :: int
+pTeva <- 0.
+elegir :: int
+elegir <- 0.
+
+
+:main
+;
+pTeva < 8 :- elegir <- 0.
+pTeva == 8 :- elegir <- 0.
+(pTeva == 9) /\ (pCroup == 2) :- elegir <- 0.
+(pTeva == 9) /\ (pCroup > 2) /\ (pCroup < 7) :- elegir <- 1.
+(pTeva == 9) /\ (pCroup > 6) /\ (pCroup < 12) :- elegir <- 0.
+(pTeva == 10) /\ (pCroup > 1) /\ (pCroup < 10) :- elegir <- 1.
+(pTeva == 10) /\ (pCroup > 9) /\ (pCroup < 12) :- elegir <- 0.
+(pTeva == 11):- elegir <- 1.
+(pTeva == 12) /\ (pCroup > 1) /\ (pCroup < 4) :- elegir <- 0.
+(pTeva == 12) /\ (pCroup > 3) /\ (pCroup < 7) :- elegir <- 2.  
+(pTeva == 12) /\ (pCroup > 6) :- elegir <- 0.
+(pTeva == 13) /\ (pCroup > 1) /\ (pCroup < 7) :- elegir <- 2.
+(pTeva == 13) /\ (pCroup > 6) /\ (pCroup < 12) :- elegir <- 0.
+(pTeva == 14) /\ (pCroup > 1) /\ (pCroup < 7) :- elegir <- 2.
+(pTeva == 14) /\ (pCroup > 6) /\ (pCroup < 12) :- elegir <- 0.
+(pTeva == 15) /\ (pCroup > 1) /\ (pCroup < 7) :- elegir <- 2.
+(pTeva == 15) /\ (pCroup > 6) /\ (pCroup < 12) :- elegir <- 0.
+(pTeva == 16) /\ (pCroup > 1) /\ (pCroup < 7) :- elegir <- 2.
+(pTeva == 16) /\ (pCroup > 6) /\ (pCroup < 12) :- elegir <- 0.
+(pTeva > 16) :- elegir <- 2.
+

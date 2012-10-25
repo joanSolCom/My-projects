@@ -1,0 +1,18 @@
+:global
+pCroup :: int
+pCroup <- 0.
+pTeva :: int
+pTeva <- 0.
+elegir :: int
+elegir <- 0.
+
+
+:main
+;
+pTeva < 17 :- elegir <- 0.
+(pTeva > 16) :- elegir <- 2.
+
+
+
+
+

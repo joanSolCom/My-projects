@@ -1,0 +1,8 @@
+En la primera entrega hablábamos de que nuestro sistema tendría una serie de funcionalidades opcionales que no sabíamos si llegaríamos a implementar. 
+En el caso de el sistema de achievements o logros, lo hemos implementado. El usuario, al consultar sus estadísticas también consulta sus logros. 
+
+Por otro lado, hablamos sobre la posibilidad de jugar torneos, cosa que por falta de tiempo no se ha implementado. 
+Además, hemos suprimido un posible tutorial que mencionábamos en dicha primera entrega. 
+
+A parte de esto, el programa tiene las funcionalidades descritas a grandes rasgos en la primera entrega 
+

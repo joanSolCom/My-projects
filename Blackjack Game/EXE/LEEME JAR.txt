@@ -1,0 +1,1 @@
+Siempre que se quiera ejecutar el .jar, se deberá tener en el mismo directorio, la carpeta lib que esta situada en este subdirectorio.
