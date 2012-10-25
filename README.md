@@ -4,4 +4,4 @@ My-projects
 Each Folder corresponds either to the projects I implement for my masters degree,
 or of personal projects.
 
-I'll Try to document everything as much as I can.
+The code is written in Java, Python, php, C++, CLIPS and PDDL mainly
