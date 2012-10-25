@@ -1,0 +1,58 @@
+Description of the modeled domain:
+
+The domain I modeled, consists in a driver, that drives his car and picks up hitchhikers. The thing about this problem, is that the driver only has one available slot in his car, to have hitch hikers, and to be fair with all the hitchhikers in the world, whenever he sees one, he picks him/her up. If there was a hitchhiker in his car at that moment, he leaves him/her there, and picks up the new one. 
+
+The goal of this problem is for the driver to pick and drop all the hitchhikers, and finally, get to his final destination with the shortest path.
+
+You can see the outputs of five diferent scenarios. All of the outputs have been generated using the Fast Downward planner.
+
+The elements of the domain:
+
+/****Predicates*****/
+
+AT - car/person location
+
+Says that the car, or a person, is in a certain location
+
+IN - person car
+
+Says that a certain person is in the car
+
+CONNECTED - location location
+
+Says that two locations are connected
+
+FREE - car
+
+Says if the car has an empty spot
+
+PICKED - person
+
+A person has been picked up
+
+DROPPED - person
+
+A person has been dropped
+
+
+/*****Functions*******/
+
+TIME-TO location location Returns Number
+
+Returns the time to go from the first location to the second.
+
+/*****Actions****/
+
+PICKUP - person car location
+
+A certain person is picked up in certain location and put in the empty slot of the car.
+
+DROP - person car location
+
+A certain person is dropped in certain location and thus, freeing the slot of the car
+
+DRIVE - car location location
+
+Moves the car from the first location to the second one
+
+

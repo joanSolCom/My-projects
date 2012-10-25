@@ -1,0 +1,127 @@
+1. Running translator
+Second argument is a file name: use two translator arguments.
+Parsing... [0.000s CPU, 0.002s wall-clock]
+Instantiating...
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.001s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 21 rules.
+Computing model... [0.010s CPU, 0.008s wall-clock]
+295 relevant atoms
+225 auxiliary atoms
+520 final queue length
+733 total queue pushes
+Completing instantiation... [0.010s CPU, 0.010s wall-clock]
+Instantiating: [0.020s CPU, 0.021s wall-clock]
+Computing fact groups...
+Finding invariants...
+12 initial candidates
+Finding invariants: [0.000s CPU, 0.004s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.001s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+11 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.000s CPU, 0.006s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.010s CPU, 0.001s wall-clock]
+Translating task: [0.020s CPU, 0.010s wall-clock]
+0 implied effects removed
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+6 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.002s wall-clock]
+Translator variables: 17
+Translator derived variables: 0
+Translator facts: 87
+Translator mutex groups: 7
+Translator total mutex groups size: 71
+Translator operators: 132
+Translator task size: 1132
+Translator peak memory: 11164 KB
+Writing output... [0.000s CPU, 0.002s wall-clock]
+Done! [0.040s CPU, 0.044s wall-clock]
+
+2. Running preprocessor
+Building causal graph...
+The causal graph is not acyclic.
+17 variables of 17 necessary
+1 of 7 mutex groups necessary.
+132 of 132 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 87
+Preprocessor derived variables: 0
+Preprocessor task size: 1067
+Writing output...
+done
+
+
+3. Running search
+Dispatcher selected state size 1.
+This is a nonunit task.
+Simplifying transitions... done!
+Conducting lazy best first search, (real) bound = 2147483647
+Initializing FF heuristic...
+Initializing additive heuristic...
+Simplifying 332 unary operators... done! [332 unary operators]
+Initializing FF heuristic...
+Initializing additive heuristic...
+Simplifying 332 unary operators... done! [332 unary operators]
+Best heuristic value: 31 [g=0, 1 evaluated, 0 expanded, t=0s]
+Best heuristic value: 30 [g=1, 2 evaluated, 1 expanded, t=0s]
+Best heuristic value: 14 [g=6, 5 evaluated, 3 expanded, t=0s]
+Best heuristic value: 12 [g=13, 105 evaluated, 103 expanded, t=0s]
+Best heuristic value: 11 [g=21, 120 evaluated, 114 expanded, t=0s]
+Best heuristic value: 10 [g=24, 122 evaluated, 116 expanded, t=0s]
+Best heuristic value: 3 [g=31, 126 evaluated, 119 expanded, t=0s]
+Best heuristic value: 0 [g=34, 127 evaluated, 120 expanded, t=0s]
+Solution found!
+Actual search time: 0s [t=0s]
+drive t1 l0 l1 (1)
+drive t1 l1 l2 (5)
+pickup p2 t1 l2 (0)
+drive t1 l2 l3 (2)
+drop p2 t1 l3 (0)
+pickup p3 t1 l3 (0)
+drive t1 l3 l7 (3)
+drop p3 t1 l7 (0)
+pickup p5 t1 l7 (0)
+drive t1 l7 l5 (2)
+drop p5 t1 l5 (0)
+drive t1 l5 l4 (3)
+pickup p4 t1 l4 (0)
+drive t1 l4 l2 (5)
+drive t1 l2 l1 (3)
+drop p4 t1 l1 (0)
+pickup p1 t1 l1 (0)
+drive t1 l1 l6 (7)
+drive t1 l6 l9 (3)
+drop p1 t1 l9 (0)
+Plan length: 20 step(s).
+Plan cost: 34
+Initial state h value: 31.
+Expanded 121 state(s).
+Reopened 0 state(s).
+Evaluated 128 state(s).
+Evaluations: 256
+Generated 587 state(s).
+Dead ends: 6 state(s).
+Search time: 0s
+Total time: 0s
+Peak memory: 3112 KB
+
