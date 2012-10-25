@@ -38,22 +38,17 @@ class ValueIterationAgent(ValueEstimationAgent):
      
     i = 0
     
-    oldValues = util.Counter()
+    self.oldValues = util.Counter()
 
     while i < self.iterations:
-      
-      oldValues = self.values.copy()
-      #For all state S of the problem, we have to get V(s)
+      self.oldValues = self.values.copy()
       for state in self.mdp.getStates():
          elements = list()
-         for action in self.mdp.getPossibleActions():
-            #Get for an action and a state, the transition states and probabilities. We have all data,
-            #we have to compute V(s)
-            element = 0.0
+         for action in self.mdp.getPossibleActions(state):
             element = self.getQValue(state,action)
-            elements.add(element)
+            elements.append(element)
             self.values[state] = max(elements)
-
+            
       i = i + 1
     
   def getValue(self, state):
@@ -73,7 +68,7 @@ class ValueIterationAgent(ValueEstimationAgent):
     """
     element = 0.0
     for tupleSP in self.mdp.getTransitionStatesAndProbs(state,action):
-      element = element + (tupleSP[1] * (self.mdp.getReward(state,action,tupleSP[1]) + self.discount * oldValues[tupleSP[1]]))
+      element = element + tupleSP[1] * (self.mdp.getReward(state,action,tupleSP[1]) + self.discount * self.oldValues[tupleSP[0]])
     
     return element
     
