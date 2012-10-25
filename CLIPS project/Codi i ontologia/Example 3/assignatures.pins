@@ -1,0 +1,884 @@
+; Fri Dec 23 21:06:53 CET 2011
+; 
+;+ (version "3.4.7")
+;+ (build "Build 620")
+
+([assignatures_Class1] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria MuyAlta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament MAII)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "MATD")
+	(Porcentaje+Aprovados 25)
+	(Prerrequisitos
+		[KB_747722_Class26]
+		[KB_747722_Class23])
+	(Tema [KB_747722_Class24]))
+
+([assignatures_Class10000] of  Optativa
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 7.5)
+	(Curso 2)
+	(Departament ESSI)
+	(EsProyecto FALSE)
+	(Horario M)
+	(Nombre "ASAI")
+	(Porcentaje+Aprovados 100)
+	(Tema [assignatures_Class20001]))
+
+([assignatures_Class20001] of  No+Informatico
+
+	(Name "Historia de la Informatica"))
+
+([assignatures_Class20003] of  Troncal
+
+	(Carga+Labo MuyAlta)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "P1")
+	(Porcentaje+Aprovados 62)
+	(Tema [assignatures_Class20004]))
+
+([assignatures_Class20004] of  General
+
+	(Name "Programacion"))
+
+([assignatures_Class20005] of  Troncal
+
+	(Carga+Labo MuyAlta)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "PRAP")
+	(Porcentaje+Aprovados 70)
+	(Prerrequisitos [assignatures_Class20003])
+	(Tema [assignatures_Class20004]))
+
+([assignatures_Class20006] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria Media)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "IC")
+	(Porcentaje+Aprovados 54)
+	(Tema [assignatures_Class20007]))
+
+([assignatures_Class20007] of  General
+
+	(Name "Arquitectura de Computadores"))
+
+([assignatures_Class20008] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "EC1")
+	(Porcentaje+Aprovados 75)
+	(Prerrequisitos [assignatures_Class20006])
+	(Tema [assignatures_Class20007]))
+
+([assignatures_Class20009] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament FME)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "F")
+	(Porcentaje+Aprovados 62)
+	(Tema [assignatures_Class20010]))
+
+([assignatures_Class20010] of  General
+
+	(Name "Fisica"))
+
+([assignatures_Class20011] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria MuyAlta)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 7.5)
+	(Curso 1)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "IL")
+	(Porcentaje+Aprovados 35)
+	(Prerrequisitos [assignatures_Class20009])
+	(Tema [assignatures_Class20012]))
+
+([assignatures_Class20012] of  General
+
+	(Name "Logica"))
+
+([assignatures_Class20013] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "PRED")
+	(Porcentaje+Aprovados 80)
+	(Prerrequisitos
+		[assignatures_Class20005]
+		[assignatures_Class20003])
+	(Tema [assignatures_Class20004]))
+
+([assignatures_Class20014] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria Media)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament EIO)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "EST")
+	(Porcentaje+Aprovados 65)
+	(Prerrequisitos
+		[KB_747722_Class26]
+		[KB_747722_Class23])
+	(Tema [KB_747722_Class24]))
+
+([assignatures_Class30000] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 7.5)
+	(Curso 2)
+	(Departament ESSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "ES1")
+	(Porcentaje+Aprovados 60)
+	(Prerrequisitos [assignatures_Class20013])
+	(Tema [assignatures_Class40003]))
+
+([assignatures_Class30003] of  Convocatoria
+
+	(Assig [assignatures_Class20003])
+	(HorarioMatriculado M)
+	(Nota 7.2)
+	(Quadrimestre 1))
+
+([assignatures_Class40000] of  Optativa
+
+	(Carga+Labo Media)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 2)
+	(Departament MAII)
+	(EsProyecto FALSE)
+	(Horario M)
+	(Nombre "CDI")
+	(Porcentaje+Aprovados 60)
+	(Prerrequisitos [KB_747722_Class26])
+	(Tema [KB_747722_Class24]))
+
+([assignatures_Class40002] of  Perfil
+
+	(Assignaturas
+		[assignatures_Class10000]
+		[assignatures_Class20003])
+	(NomPerfil "Gestio i Explotacio de la Informacio")
+	(Tematica [assignatures_Class40003]))
+
+([assignatures_Class40003] of  Especializado
+
+	(Afi [assignatures_Class40004])
+	(Name "Enginyeria del Software"))
+
+([assignatures_Class40004] of  Especializado
+
+	(Name "Data Mining"))
+
+([assignatures_Class50001] of  Optativa
+
+	(Carga+Labo Media)
+	(Carga+Teoria Alta)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario M)
+	(Nombre "PIAM")
+	(Porcentaje+Aprovados 50)
+	(Prerrequisitos [assignatures_Class60017])
+	(Tema [assignatures_Class60018]))
+
+([assignatures_Class50002] of  Convocatoria
+
+	(Assig [assignatures_Class20005])
+	(HorarioMatriculado M)
+	(Nota 9.0)
+	(Quadrimestre 2))
+
+([assignatures_Class50006] of  Convocatoria
+
+	(Assig [assignatures_Class20011])
+	(HorarioMatriculado M)
+	(Nota 3.0)
+	(Quadrimestre 2))
+
+([assignatures_Class50007] of  Convocatoria
+
+	(Assig [KB_747722_Class26])
+	(HorarioMatriculado M)
+	(Nota 8.0)
+	(Quadrimestre 2))
+
+([assignatures_Class50009] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "EC2")
+	(Porcentaje+Aprovados 67)
+	(Prerrequisitos
+		[assignatures_Class20008]
+		[assignatures_Class20006])
+	(Tema [assignatures_Class20007]))
+
+([assignatures_Class50010] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 6.0)
+	(Curso 2)
+	(Departament ESAII)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "PI")
+	(Porcentaje+Aprovados 55)
+	(Prerrequisitos
+		[assignatures_Class20009]
+		[assignatures_Class20006]
+		[assignatures_Class20008])
+	(Tema [assignatures_Class20007]))
+
+([assignatures_Class60002] of  Optativa
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 2)
+	(Departament MAII)
+	(EsProyecto FALSE)
+	(Horario T)
+	(Nombre "C")
+	(Porcentaje+Aprovados 65)
+	(Prerrequisitos [KB_747722_Class26])
+	(Tema [KB_747722_Class24]))
+
+([assignatures_Class60003] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 9.0)
+	(Curso 3)
+	(Departament ESSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "ES2")
+	(Porcentaje+Aprovados 70)
+	(Prerrequisitos
+		[assignatures_Class30000]
+		[assignatures_Class60004])
+	(Tema [assignatures_Class40003]))
+
+([assignatures_Class60004] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Alta)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament ESSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "BD")
+	(Porcentaje+Aprovados 65)
+	(Prerrequisitos [assignatures_Class20013])
+	(Tema [assignatures_Class40003]))
+
+([assignatures_Class60005] of  Troncal
+
+	(Carga+Labo MuyAlta)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 6.0)
+	(Curso 2)
+	(Departament ESSI)
+	(EsProyecto TRUE)
+	(Horario MT)
+	(Nombre "PROP")
+	(Porcentaje+Aprovados 95)
+	(Prerrequisitos [assignatures_Class20013])
+	(Tema [assignatures_Class20004]))
+
+([assignatures_Class60006] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria MuyAlta)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "ADA")
+	(Porcentaje+Aprovados 30)
+	(Prerrequisitos
+		[assignatures_Class20005]
+		[assignatures_Class20013])
+	(Tema
+		[assignatures_Class20004]
+		[assignatures_Class20012]))
+
+([assignatures_Class60007] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 2)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "SO")
+	(Porcentaje+Aprovados 65)
+	(Prerrequisitos
+		[assignatures_Class20013]
+		[assignatures_Class50009])
+	(Tema [assignatures_Class60008]))
+
+([assignatures_Class60008] of  Especializado
+
+	(Afi [assignatures_Class60018])
+	(Name "Sistemas Operativos"))
+
+([assignatures_Class60009] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament ESAII)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "E3")
+	(Porcentaje+Aprovados 90)
+	(Prerrequisitos
+		[assignatures_Class60006]
+		[assignatures_Class30000]
+		[assignatures_Class20013]
+		[assignatures_Class60005]
+		[assignatures_Class60004])
+	(Tema [assignatures_Class60010]))
+
+([assignatures_Class60010] of  No+Informatico
+
+	(Name "Economia"))
+
+([assignatures_Class60011] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Media)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "VIG")
+	(Porcentaje+Aprovados 70)
+	(Prerrequisitos
+		[assignatures_Class60006]
+		[assignatures_Class20013]
+		[assignatures_Class60005])
+	(Tema [assignatures_Class60012]))
+
+([assignatures_Class60012] of  Especializado
+
+	(Name "Graficos"))
+
+([assignatures_Class60013] of  Troncal
+
+	(Carga+Labo MuyAlta)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament AC)
+	(EsProyecto TRUE)
+	(Horario MT)
+	(Nombre "PROSO")
+	(Porcentaje+Aprovados 75)
+	(Prerrequisitos
+		[assignatures_Class50009]
+		[assignatures_Class20013]
+		[assignatures_Class60007])
+	(Tema [assignatures_Class60008]))
+
+([assignatures_Class60014] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 7.5)
+	(Curso 4)
+	(Departament ESSI)
+	(EsProyecto TRUE)
+	(Horario MT)
+	(Nombre "PESBD")
+	(Porcentaje+Aprovados 95)
+	(Prerrequisitos
+		[assignatures_Class60004]
+		[assignatures_Class30000]
+		[assignatures_Class60003]
+		[assignatures_Class60005]
+		[assignatures_Class60006])
+	(Tema [assignatures_Class40003]))
+
+([assignatures_Class60015] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria MuyAlta)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 9.0)
+	(Curso 4)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "TC")
+	(Porcentaje+Aprovados 20)
+	(Prerrequisitos
+		[assignatures_Class60006]
+		[assignatures_Class1])
+	(Tema [assignatures_Class20012]))
+
+([assignatures_Class60016] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria MuyAlta)
+	(CargaProblemas MuyAlta)
+	(Creditos+ECTS 9.0)
+	(Curso 4)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "AC")
+	(Porcentaje+Aprovados 20)
+	(Prerrequisitos
+		[assignatures_Class50009]
+		[assignatures_Class20014]
+		[assignatures_Class60007])
+	(Tema [assignatures_Class20007]))
+
+([assignatures_Class60017] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 4)
+	(Departament AC)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "XC")
+	(Porcentaje+Aprovados 60)
+	(Prerrequisitos [assignatures_Class60007])
+	(Tema [assignatures_Class60018]))
+
+([assignatures_Class60018] of  Especializado
+
+	(Afi [assignatures_Class60008])
+	(Name "Xarxes"))
+
+([assignatures_Class60019] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 5)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "IA")
+	(Porcentaje+Aprovados 50)
+	(Prerrequisitos
+		[assignatures_Class60006]
+		[assignatures_Class20011])
+	(Tema [assignatures_Class60020]))
+
+([assignatures_Class60020] of  Especializado
+
+	(Name "Inteligencia Artificial"))
+
+([assignatures_Class60021] of  Troncal
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 5)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "CL")
+	(Porcentaje+Aprovados 50)
+	(Prerrequisitos
+		[assignatures_Class20008]
+		[assignatures_Class20013]
+		[assignatures_Class60015])
+	(Tema
+		[assignatures_Class20012]
+		[KB_747722_Class24]
+		[assignatures_Class20004]))
+
+([assignatures_Class60022] of  Troncal
+
+	(Carga+Labo MuyAlta)
+	(Carga+Teoria Baja)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 6.0)
+	(Curso 5)
+	(Departament AC)
+	(EsProyecto TRUE)
+	(Horario MT)
+	(Nombre "PXC")
+	(Porcentaje+Aprovados 90)
+	(Prerrequisitos [assignatures_Class60017])
+	(Tema
+		[assignatures_Class60018]
+		[assignatures_Class20004]))
+
+([assignatures_Class60023] of  Optativa
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 5)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario M)
+	(Nombre "AIA")
+	(Porcentaje+Aprovados 70)
+	(Prerrequisitos [assignatures_Class60019])
+	(Tema [assignatures_Class60020]))
+
+([assignatures_Class60024] of  Optativa
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario T)
+	(Nombre "ALG")
+	(Porcentaje+Aprovados 70)
+	(Prerrequisitos
+		[assignatures_Class60006]
+		[assignatures_Class20014])
+	(Tema
+		[assignatures_Class20012]
+		[assignatures_Class20004]))
+
+([assignatures_Class60025] of  Expediente
+
+	(Alumno "Marc")
+	(Convocatorias
+		[assignatures_Class70024]
+		[assignatures_Class70023]
+		[assignatures_Class70016]
+		[assignatures_Class70018]
+		[assignatures_Class70022]
+		[assignatures_Class70017]
+		[assignatures_Class70011]
+		[assignatures_Class70009]
+		[assignatures_Class50006]
+		[assignatures_Class70012]
+		[assignatures_Class50007]
+		[assignatures_Class70019]
+		[assignatures_Class30003]
+		[assignatures_Class70021]
+		[assignatures_Class50002]
+		[assignatures_Class70020]
+		[assignatures_Class70025]))
+
+([assignatures_Class60027] of  Perfil
+
+	(NomPerfil "Arquitectures i computacio alt rendiment"))
+
+([assignatures_Class70003] of  Optativa
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament EIO)
+	(Horario T)
+	(Nombre "PGPSI")
+	(Porcentaje+Aprovados 80)
+	(Prerrequisitos [assignatures_Class60009])
+	(Tema [assignatures_Class70004]))
+
+([assignatures_Class70004] of  General
+
+	(Name "Economia"))
+
+([assignatures_Class70005] of  Optativa
+
+	(Carga+Labo Media)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 4)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario M)
+	(Nombre "COM")
+	(Porcentaje+Aprovados 70)
+	(Prerrequisitos [assignatures_Class60015])
+	(Tema [assignatures_Class20012]))
+
+([assignatures_Class70006] of  Temas
+
+	(Name "Complejidad"))
+
+([assignatures_Class70007] of  Optativa
+
+	(Carga+Labo MuyAlta)
+	(Carga+Teoria Media)
+	(CargaProblemas Media)
+	(Creditos+ECTS 7.5)
+	(Curso 3)
+	(Departament LSI)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "DABD")
+	(Porcentaje+Aprovados 60)
+	(Prerrequisitos [assignatures_Class60004])
+	(Tema [assignatures_Class40003]))
+
+([assignatures_Class70008] of  Optativa
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 7.5)
+	(Curso 2)
+	(Departament FME)
+	(EsProyecto FALSE)
+	(Horario M)
+	(Nombre "FFTI")
+	(Porcentaje+Aprovados 90)
+	(Prerrequisitos
+		[assignatures_Class20009]
+		[assignatures_Class20014])
+	(Tema [assignatures_Class20010]))
+
+([assignatures_Class70009] of  Convocatoria
+
+	(Assig [assignatures_Class20006])
+	(HorarioMatriculado M)
+	(Nota 5.0)
+	(Quadrimestre 1))
+
+([assignatures_Class70011] of  Convocatoria
+
+	(Assig [assignatures_Class20009])
+	(HorarioMatriculado M)
+	(Nota 9.0)
+	(Quadrimestre 1))
+
+([assignatures_Class70012] of  Convocatoria
+
+	(Assig [KB_747722_Class23])
+	(HorarioMatriculado M)
+	(Nota 5.0)
+	(Quadrimestre 1))
+
+([assignatures_Class70016] of  Convocatoria
+
+	(Assig [assignatures_Class20008])
+	(HorarioMatriculado M)
+	(Nota 9.0)
+	(Quadrimestre 2))
+
+([assignatures_Class70017] of  Convocatoria
+
+	(Assig [assignatures_Class20014])
+	(HorarioMatriculado M)
+	(Nota 5.0)
+	(Quadrimestre 3))
+
+([assignatures_Class70018] of  Convocatoria
+
+	(Assig [assignatures_Class50009])
+	(HorarioMatriculado M)
+	(Nota 9.0)
+	(Quadrimestre 3))
+
+([assignatures_Class70019] of  Convocatoria
+
+	(Assig [assignatures_Class1])
+	(HorarioMatriculado M)
+	(Nota 5.0)
+	(Quadrimestre 3))
+
+([assignatures_Class70020] of  Convocatoria
+
+	(Assig [assignatures_Class20013])
+	(HorarioMatriculado M)
+	(Nota 5.0)
+	(Quadrimestre 3))
+
+([assignatures_Class70021] of  Convocatoria
+
+	(Assig [assignatures_Class50010])
+	(HorarioMatriculado M)
+	(Nota 4.0)
+	(Quadrimestre 4))
+
+([assignatures_Class70022] of  Convocatoria
+
+	(Assig [assignatures_Class30000])
+	(HorarioMatriculado T)
+	(Nota 5.0)
+	(Quadrimestre 4))
+
+([assignatures_Class70023] of  Convocatoria
+
+	(Assig [assignatures_Class60004])
+	(HorarioMatriculado M)
+	(Nota 6.0)
+	(Quadrimestre 4))
+
+([assignatures_Class70024] of  Convocatoria
+
+	(Assig [assignatures_Class60006])
+	(HorarioMatriculado M)
+	(Nota 3.0)
+	(Quadrimestre 4))
+
+([assignatures_Class70025] of  Convocatoria
+
+	(Assig [assignatures_Class60007])
+	(HorarioMatriculado M)
+	(Nota 7.0)
+	(Quadrimestre 4))
+
+([assignatures_Class70026] of  ALE
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Media)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 3.0)
+	(Curso 2)
+	(Departament EIO)
+	(EsPresencial TRUE)
+	(EsProyecto FALSE)
+	(Horario T)
+	(Nombre "CAICA")
+	(Porcentaje+Aprovados 100)
+	(Tema [assignatures_Class70004]))
+
+([assignatures_Class70027] of  ALE
+
+	(Carga+Labo Alta)
+	(Carga+Teoria Media)
+	(CargaProblemas Baja)
+	(Creditos+ECTS 6.0)
+	(Curso 2)
+	(Departament AC)
+	(Horario MT)
+	(Nombre "APC")
+	(Porcentaje+Aprovados 67)
+	(Prerrequisitos [assignatures_Class50009])
+	(Tema [assignatures_Class20007]))
+
+([KB_747722_Class23] of  Troncal
+
+	(Carga+Labo Baja)
+	(Carga+Teoria Alta)
+	(CargaProblemas Media)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament MAII)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "M1")
+	(Porcentaje+Aprovados 70)
+	(Tema [KB_747722_Class24]))
+
+([KB_747722_Class24] of  General
+
+	(Name "Matematicas"))
+
+([KB_747722_Class26] of  Troncal
+
+	(Carga+Labo Media)
+	(Carga+Teoria Alta)
+	(CargaProblemas Alta)
+	(Creditos+ECTS 9.0)
+	(Curso 1)
+	(Departament MAII)
+	(EsProyecto FALSE)
+	(Horario MT)
+	(Nombre "M2")
+	(Porcentaje+Aprovados 67)
+	(Prerrequisitos [KB_747722_Class23])
+	(Tema [KB_747722_Class24]))

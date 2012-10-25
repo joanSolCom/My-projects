@@ -1,0 +1,21 @@
+
+A cada una d'aquestes carpetes, hi ha la ontologia corresponent a la prova en concret.
+
+Aixo ho feim aixi perque ens hem trobat molts problemes a la hora de tenir molts expedients dins
+un fitxer clp, amb lo que hem dividit les instancies, per a fer les proves per a cada cas en concret,
+nomes tinguent les convocatories d'aquell estudiant en cada cas.
+A part d'aixo, el codi es exactament el mateix, i els fitxers del protegee nomes difereixen en les instancies
+que tenen dins.
+
+Per a executar la practica, fer-ho amb els arxius que hi ha dins les carpetes.
+
+Deixem a una carpeta anomenada "Codi comentat sense instancies", fitxers sense instancies i en el cas del .clp, amb comentaris
+per a les consultes del codi. Com hem dit aquests codis, no tenen instancies!! Si es vol provar, o veure un codi amb instancies, anar a qualsevol
+de les subcarpetes de les proves (Tenen noms de alumne) i utilitzar aquells fitxers.
+
+Ho fem aixi perque aixi teniu a la vostra disposicio un codi CLIPS ben comentat (a part dels comentaris, es igual als de les proves), i 
+codis preparats per a veure el funcionament del mateix, a mes d'uns arxius per a veure la ontologia sense cap instancia.
+
+Atentament,
+
+Juan Soler Company i Marc Velmer Montoliu
