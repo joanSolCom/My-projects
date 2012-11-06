@@ -217,8 +217,6 @@ class ApproximateQAgent(PacmanQAgent):
         correction = reward + self.discount * qval - self.getQValue(state,action)
         self.w[feat] += self.alpha*correction*feats[feat]
         
-    util.raiseNotDefined()
-
   def final(self, state):
     "Called at the end of each game."
     # call the super-class final method
