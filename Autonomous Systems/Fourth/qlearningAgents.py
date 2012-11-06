@@ -37,7 +37,7 @@ class QLearningAgent(ReinforcementAgent):
     "You can initialize Q-values here..."
     ReinforcementAgent.__init__(self, **args)
 
-    "*** YOUR CODE HERE ***"
+    self.qvals = util.Counter()
 
   def getQValue(self, state, action):
     """
@@ -45,7 +45,7 @@ class QLearningAgent(ReinforcementAgent):
       Should return 0.0 if we never seen
       a state or (state,action) tuple
     """
-    "*** YOUR CODE HERE ***"
+    return self.qvals[(state,action)]
     util.raiseNotDefined()
 
 
@@ -56,7 +56,15 @@ class QLearningAgent(ReinforcementAgent):
       there are no legal actions, which is the case at the
       terminal state, you should return a value of 0.0.
     """
-    "*** YOUR CODE HERE ***"
+    l = list()
+    
+    for action in self.getLegalActions(state):
+      l.append(self.getQValue(state, action))
+    
+    if len(l) > 0:
+      return max(l)
+    
+    return 0
     util.raiseNotDefined()
 
   def getPolicy(self, state):
@@ -65,7 +73,21 @@ class QLearningAgent(ReinforcementAgent):
       are no legal actions, which is the case at the terminal state,
       you should return None.
     """
-    "*** YOUR CODE HERE ***"
+    if len(self.getLegalActions(state)) == 0:
+      return None
+    
+    maxQ = -99999
+    maxl = list()
+    for action in self.getLegalActions(state):
+      qval = self.getQValue(state, action)
+      if qval == maxQ:
+        maxl.append(action)
+      else:
+        if qval > maxQ:
+          maxQ = qval
+          maxl = [action]
+    
+    return random.choice(maxl)
     util.raiseNotDefined()
 
   def getAction(self, state):
@@ -82,7 +104,16 @@ class QLearningAgent(ReinforcementAgent):
     # Pick Action
     legalActions = self.getLegalActions(state)
     action = None
-    "*** YOUR CODE HERE ***"
+
+    if len(legalActions) == 0:
+      return None
+
+    if util.flipCoin(self.epsilon):
+      return random.choice(legalActions)
+
+    else:
+      return self.getPolicy(state)
+
     util.raiseNotDefined()
 
     return action
@@ -96,8 +127,17 @@ class QLearningAgent(ReinforcementAgent):
       NOTE: You should never call this function,
       it will be called on your behalf
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    qList = list()
+    for action in self.getLegalActions(nextState):
+      qList.append(self.getQValue(nextState, action))
+
+    if len(qList) > 0:
+      qval = max(qList)
+
+    else:
+      qval = 0
+
+    self.qvals[(state, action)] += self.alpha * (reward + self.discount * qval - self.getQValue(state,action))
 
 class PacmanQAgent(QLearningAgent):
   "Exactly the same as QLearningAgent, but with different default parameters"
@@ -144,21 +184,39 @@ class ApproximateQAgent(PacmanQAgent):
     PacmanQAgent.__init__(self, **args)
 
     # You might want to initialize weights here.
-    "*** YOUR CODE HERE ***"
+    self.w = util.Counter()
 
   def getQValue(self, state, action):
     """
       Should return Q(state,action) = w * featureVector
       where * is the dotProduct operator
     """
-    "*** YOUR CODE HERE ***"
+    feats = self.featExtractor.getFeatures(state, action)
+    q = 0.0
+
+    for feat in feats:
+      q += feats[feat] * self.w[feat]
+    
+    return q
     util.raiseNotDefined()
 
   def update(self, state, action, nextState, reward):
     """
        Should update your weights based on transition
     """
-    "*** YOUR CODE HERE ***"
+    qList = list()
+    for a in self.getLegalActions(nextState):
+      qList.append(self.getQValue(nextState, a))
+    if len(qList) > 0:
+      qval = max(qList)
+    else:
+      qval = 0
+    
+    feats = self.featExtractor.getFeatures(state, action)
+    for feat in feats:
+        correction = reward + self.discount * qval - self.getQValue(state,action)
+        self.w[feat] += self.alpha*correction*feats[feat]
+        
     util.raiseNotDefined()
 
   def final(self, state):
