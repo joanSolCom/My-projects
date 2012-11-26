@@ -1,0 +1,44 @@
+////////////////////////////////////////////////////////////////////
+// Wumpus POMDP
+//
+// An example RDDL description for the well-known Wumpus problem
+//
+// Author: Raimon Bosch (raimon.bosch [at] gmail.com)
+////////////////////////////////////////////////////////////////////
+domain wumpus {
+
+	requirements = {
+		reward-deterministic,
+		partially-observed
+	};
+
+	types {
+      agent : object;
+  		square : object;
+      wumpus : object;
+	};
+
+	pvariables {
+
+		ADJACENT(square, square) : { non-fluent, bool, default = false };
+    AGENT-AT(square) : { non-fluent, bool, default = false };
+    WUMPUS-AT(square) : { non-fluent, bool, default = false };
+
+		isDead(wumpus) : { state-fluent, bool, default = false };
+
+		move(square, square) : { action-fluent, bool, default = false };
+    shoot(square, square) : { action-fluent, bool, default = false };
+    release(square) : { action-fluent, bool, default = false };
+	};
+
+	cpfs {
+
+		isDead'(?x) = if (shoot(?x))
+						then KronDelta(true)
+						else if (alive(?x))
+							then Bernoulli(.45 + .5*[1 + sum_{?y : square} (AGENT-AT(?x) ^ WUMPUS-AT(?y) ^ ADJACENT(?y,?x))])
+							else Bernoulli(REBOOT-PROB);
+	};
+
+	reward = sum_{?c : wumpus} [isDead(?c)];
+}
