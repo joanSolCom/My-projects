@@ -37,7 +37,6 @@ domain wumpus {
 //	    obsIsSmelly(square) : { observ-fluent, bool};
 //	    obsIsBreezy(square) : { observ-fluent, bool};
 //	    obsIsGlitter(square): { observ-fluent, bool};
-//	    obsIsDead: { observ-fluent, bool};
 		
 		// ACTIONS
 		move(square) : { action-fluent, bool, default = false };
@@ -49,39 +48,64 @@ domain wumpus {
 
 		// EVOLUTION OF THE STATE VARIABLES
 
-		isDead' = if((exists_{?x:square,?y:square}[myPos(?x) ^ WUMPUSAT(?y) ^ ADJACENT(?x,?y) ^ shoot(?y)]) ^ ~isDead)
+		isDead' = if(~AmIDead ^ (exists_{?x:square,?y:square}[myPos(?x) ^ WUMPUSAT(?y) ^ ADJACENT(?x,?y) ^ shoot(?y)]) ^ ~isDead)
 					then KronDelta(true)
 				  else
 				  	KronDelta(false);
 
-		// Makes this error:
-		// Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+		AmIDead' = if((exists_{?x:square}[myPos(?x) ^ ~WUMPUSAT(?x) ^ ~PITAT(?x)]) ^ ~AmIDead)
+						then KronDelta(false)
+					else if ((exists_{?x:square}[myPos(?x) ^ (WUMPUSAT(?x) | PITAT(?x))]) ^ ~AmIDead)
+						then KronDelta(true)
+					else
+						KronDelta(false);
 
-//		AmIDead' = if((exists_{?x:square}[myPos(?x) ^ (WUMPUSAT(?x) | PITAT(?x))]) ^ ~AmIDead)
-//						then KronDelta(true)
-//					else
-//						KronDelta(false);
-
-		gotArrow' = if(exists_{?x:square}[shoot(?x)])
+		gotArrow' = if(~AmIDead ^ exists_{?x:square}[shoot(?x)])
 						then KronDelta(false)
 					else
 						KronDelta(true);
 
-		myPos'(?x) = if (myPos(?x)) then KronDelta(false)
-                   	 else if(move(?x)) then KronDelta(true)
-                   	 else KronDelta(false);
+		myPos'(?x) = 
 
-		isGlitter'(?x) = if(myPos(?x) ^ GOLDAT(?x))
+			if(AmIDead) then KronDelta(false)
+
+			// GOLD
+			else if (isGlitter(?x) ^ myPos(?x))
+            	then KronDelta(true)
+            else if(exists_{?x2 : square} [ isGlitter(?x2) ^ myPos(?x2)] )
+            	then KronDelta(false)
+
+            // WUMPUS
+            else if (WUMPUSAT(?x) ^ myPos(?x))
+            	then KronDelta(true)
+            else if(exists_{?x2 : square} [ WUMPUSAT(?x2) ^ myPos(?x2)] )
+            	then KronDelta(false)
+ 
+            // PIT
+            else if (PITAT(?x) ^ myPos(?x))
+            	then KronDelta(true)
+            else if(exists_{?x2 : square} [ PITAT(?x2) ^ myPos(?x2)] )
+            	then KronDelta(false)
+             
+            else if(exists_{?x2:square}[myPos(?x2) ^ move(?x) ^ ADJACENT(?x2,?x)])
+            	then KronDelta(true)    
+
+            // A noop or illegal movement, so state unchanged
+            else 
+                KronDelta(myPos(?x) ^ ~WUMPUSAT(?x) ^ ~PITAT(?x));
+
+
+		isGlitter'(?x) = if(myPos'(?x) ^ GOLDAT(?x))
 					 		then KronDelta(grab(?x))
 					 	 else
 					 		KronDelta(false);
 
-		isSmelly'(?x) = if(exists_{?y:square}[myPos(?x) ^ ADJACENT(?x,?y) ^ WUMPUSAT(?y)])
+		isSmelly'(?x) = if(exists_{?y:square}[myPos'(?x) ^ ADJACENT(?x,?y) ^ WUMPUSAT(?y)])
 							then KronDelta(shoot(?y))
 						else
 						  	KronDelta(false);
 
-		isBreezy'(?x) = if(exists_{?y:square}[myPos(?x) ^ ADJACENT(?x,?y) ^ PITAT(?y)])
+		isBreezy'(?x) = if(exists_{?y:square}[myPos'(?x) ^ ADJACENT(?x,?y) ^ PITAT(?y)])
 							then KronDelta(true)
 						else
 						  	KronDelta(false);		 
@@ -104,10 +128,7 @@ domain wumpus {
 //						  else
 //						  		Bernoulli(1 - BREEZEPROB);	
 
-//		obsIsDead = if(exists_{?x:square,?y:square}[myPos(?x) ^ WUMPUSAT(?y) ^ ADJACENT(?x,?y) ^ shoot(?y)] ^ ~isDead)
-//						then Bernoulli(DEADPROB)
-//					else
-//						Bernoulli(1-DEADPROB);		 
+		
 	};
 
 	// REWARD FUNCTION. COMPONENTS:
@@ -121,11 +142,12 @@ domain wumpus {
 
 	state-action-constraints {
 
-		forall_{?x:square}[move(?x) => ~myPos(?x) ^ exists_{?y:square}[myPos(?y) ^ ADJACENT(?x,?y)]];
-		forall_{?x:square}[grab(?x) => myPos(?x) ^ GOLDAT(?x)];
-		forall_{?x:square,?y:square}[shoot(?x) => myPos(?y) ^ ADJACENT(?x,?y)];
+		forall_{?x:square}[move(?x) => ~AmIDead ^ ~myPos(?x) ^ exists_{?y:square}[myPos(?y) ^ ADJACENT(?x,?y)]];
+		forall_{?x:square}[grab(?x) => ~AmIDead ^ myPos(?x) ^ GOLDAT(?x)];
+		forall_{?x:square}[grab(?x)] => ~isGlitter(?x);
+		forall_{?x:square,?y:square}[shoot(?x) => ~AmIDead ^ myPos(?y) ^ ADJACENT(?x,?y)];
 		(sum_{?x:square}[myPos(?x)]) == 1;
-		//Gold only grabbed once!!
+				
 	};
 }
 

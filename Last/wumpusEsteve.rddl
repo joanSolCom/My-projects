@@ -1,0 +1,265 @@
+domain wumpus_pomdp {
+    requirements = {
+        reward-deterministic,
+        partially-observed
+    };
+
+    types {
+        xpos : object;
+        ypos : object;
+    };
+
+    pvariables {
+
+        NORTH(ypos, ypos) : {non-fluent, bool, default = false};
+        SOUTH(ypos, ypos) : {non-fluent, bool, default = false};
+        EAST(xpos, xpos)  : {non-fluent, bool, default = false};
+        WEST(xpos, xpos)  : {non-fluent, bool, default = false};
+
+        MIN-XPOS(xpos) : {non-fluent, bool, default = false};
+        MAX-XPOS(xpos) : {non-fluent, bool, default = false};
+        MIN-YPOS(ypos) : {non-fluent, bool, default = false};
+        MAX-YPOS(ypos) : {non-fluent, bool, default = false};
+
+        GOLD(xpos,ypos) : {non-fluent, bool, default = false};
+        PIT(xpos, ypos) : {non-fluent, bool, default = false};
+        WUMPUS(xpos, ypos) : {non-fluent, bool, default = false};
+
+        // Fluents
+        player-at(xpos, ypos)    : {state-fluent, bool, default = false};
+        first-step : {state-fluent, bool, default = false};
+        dead-by-wumpus : {state-fluent, bool, default = false};
+        dead-by-pit : {state-fluent, bool, default = false};
+        has-gold : {state-fluent, bool, default = false};
+
+        // Observations
+        glitter(xpos, ypos) : { observ-fluent, bool };
+        breeze(xpos, ypos) : { observ-fluent, bool };
+        smell(xpos, ypos) : { observ-fluent, bool };
+
+        // Actions
+//        grab : {action-fluent, bool, default = false};
+//        release : {action-fluent, bool, default = false};
+//        shoot : {action-fluent, bool, default = false};
+
+        move-north : {action-fluent, bool, default = false};
+        move-south : {action-fluent, bool, default = false};
+        move-east  : {action-fluent, bool, default = false};
+        move-west  : {action-fluent, bool, default = false};
+    };
+    
+    cpfs {
+
+        smell(?x,?y) =
+                if (exists_{?x2 : xpos, ?y2 : ypos} [NORTH(?y,?y2) ^ WUMPUS(?x,?y2)])
+                    then KronDelta(true)
+                else if (exists_{?x2 : xpos, ?y2 : ypos} [SOUTH(?y,?y2) ^ WUMPUS(?x,?y2)])
+                    then KronDelta(true)
+                else if (exists_{?x2 : xpos, ?y2 : ypos} [EAST(?x,?x2) ^ WUMPUS(?x2,?y)])
+                    then KronDelta(true)
+                else if (exists_{?x2 : xpos, ?y2 : ypos} [WEST(?x,?x2) ^ WUMPUS(?x2,?y)])
+                    then KronDelta(true)
+                else
+                    KronDelta(false);
+                
+        breeze(?x,?y) =
+                if (exists_{?x2 : xpos, ?y2 : ypos} [NORTH(?y,?y2) ^ PIT(?x,?y2)])
+                    then KronDelta(true)
+                else if (exists_{?x2 : xpos, ?y2 : ypos} [SOUTH(?y,?y2) ^ PIT(?x,?y2)])
+                    then KronDelta(true)
+                else if (exists_{?x2 : xpos, ?y2 : ypos} [EAST(?x,?x2) ^ PIT(?x2,?y)])
+                    then KronDelta(true)
+                else if (exists_{?x2 : xpos, ?y2 : ypos} [WEST(?x,?x2) ^ PIT(?x2,?y)])
+                    then KronDelta(true)
+                else
+                    KronDelta(false);
+
+        glitter(?x,?y) = KronDelta (GOLD(?x, ?y));
+
+        first-step' = KronDelta(true);
+
+        has-gold' =
+            if (~first-step)
+            then
+                KronDelta(false)
+            else if (exists_{?x1 : xpos, ?y1 : ypos} [glitter(?x1, ?y1) ^ player-at(?x1, ?y1)])
+            then
+                KronDelta(true)
+            else
+                KronDelta(false);
+
+        dead-by-wumpus' = if (exists_{?x1 : xpos, ?y1 : ypos} [WUMPUS(?x1, ?y1) ^ player-at(?x1, ?y1)])
+            then KronDelta(true)
+            else
+                KronDelta(false);
+
+        dead-by-pit' = if (exists_{?x1 : xpos, ?y1 : ypos} [PIT(?x1, ?y1) ^ player-at(?x1, ?y1)])
+            then KronDelta(true)
+            else
+                KronDelta(false);
+
+
+        player-at'(?x,?y) =
+            if (~first-step)
+            then
+                KronDelta(player-at(?x,?y) ^ ~WUMPUS(?x,?y) ^ ~PIT(?x, ?y))
+
+            // GOLD reached, player stays put
+            else if (glitter(?x, ?y) ^ player-at(?x,?y))
+            then 
+                KronDelta(true)
+            else if(exists_{?x2 : xpos, ?y2 : ypos} [ glitter(?x2,?y2) ^ player-at(?x2,?y2)] )
+            then 
+                KronDelta(false)
+ 
+
+            // WUMPUS reached, player stays put
+            else if (WUMPUS(?x, ?y) ^ player-at(?x,?y))
+            then 
+                KronDelta(true)
+            else if(exists_{?x2 : xpos, ?y2 : ypos} [ WUMPUS(?x2,?y2) ^ player-at(?x2,?y2)] )
+            then 
+                KronDelta(false)
+ 
+
+            // PIT reached, player stays put
+            else if (PIT(?x, ?y) ^ player-at(?x,?y))
+            then 
+                KronDelta(true)
+            else if(exists_{?x2 : xpos, ?y2 : ypos} [ PIT(?x2,?y2) ^ player-at(?x2,?y2)] )
+            then 
+                KronDelta(false)
+ 
+                
+            else if(move-north ^ exists_{?y2 : ypos} [ NORTH(?y2,?y) ^ player-at(?x,?y2) ]) // ^ ~smell(?x,?y2) ^ ~breeze(?x,?y2) ] )
+            then 
+                KronDelta(true) // player moves to this location
+            else if(move-north ^ exists_{?y2 : ypos} [ NORTH(?y,?y2) ^ player-at(?x,?y) ] )
+            then 
+                KronDelta(false) // player leaves this location
+
+
+            else if(move-south ^ exists_{?y2 : ypos} [ SOUTH(?y2,?y) ^ player-at(?x,?y2) ]) // ^ ~smell(?x,?y2) ^ ~breeze(?x,?y2) ] )
+            then 
+                KronDelta(true) // player moves to this location
+            else if(move-south ^ exists_{?y2 : ypos} [ SOUTH(?y,?y2) ^ player-at(?x,?y) ] )
+            then 
+                KronDelta(false) // player leaves this location
+
+            else if(move-east ^ exists_{?x2 : xpos} [ EAST(?x2,?x) ^ player-at(?x2,?y) ]) // ^ ~smell(?x2, ?y) ^ ~breeze(?x2, ?y) ] )
+            then 
+                KronDelta(true) // player moves to this location
+            else if(move-east ^ exists_{?x2 : xpos} [ EAST(?x,?x2) ^ player-at(?x,?y) ] )
+            then 
+                KronDelta(false) // player leaves this location
+
+
+            else if(move-west ^ exists_{?x2 : xpos} [ WEST(?x2,?x) ^ player-at(?x2,?y) ]) // ^ ~smell(?x2, ?y) ^ ~breeze(?x2, ?y) ] )
+            then 
+                KronDelta(true) // player moves to this location
+            else if(move-west ^ exists_{?x2 : xpos} [ WEST(?x,?x2) ^ player-at(?x,?y) ] )
+            then 
+                KronDelta(false) // player leaves this location
+
+            // A noop or illegal movement, so state unchanged
+            else 
+                KronDelta(player-at(?x,?y) ^ ~WUMPUS(?x,?y) ^ ~PIT(?x, ?y));
+    };
+    
+    // +1000 reward for grabbing gold, -1000 for dying (either by wumpus or by falling into a pit), 0 after either grabbing gold or
+    // dying and -1 for every step
+    // TODO: add -10 for shooting
+    reward =
+        if (exists_{?x : xpos, ?y : ypos} [glitter(?x, ?y) ^ player-at(?x, ?y) ^ ~has-gold])
+        then
+            1000
+        else if (exists_{?x : xpos, ?y : ypos} [glitter(?x, ?y) ^ player-at(?x, ?y) ^ has-gold])
+        then
+            0
+
+
+        else if (exists_{?x : xpos, ?y : ypos} [WUMPUS(?x, ?y) ^ player-at(?x, ?y) ^ ~dead-by-wumpus])
+        then
+            -1000
+        else if (exists_{?x : xpos, ?y : ypos} [WUMPUS(?x, ?y) ^ player-at(?x, ?y) ^ dead-by-wumpus])
+        then
+            0
+
+
+        else if (exists_{?x : xpos, ?y : ypos} [PIT(?x, ?y) ^ player-at(?x, ?y) ^ ~dead-by-pit])
+        then
+            -1000
+        else if (exists_{?x : xpos, ?y : ypos} [PIT(?x, ?y) ^ player-at(?x, ?y) ^ dead-by-pit])
+        then
+            0
+
+        else
+            -1;
+    
+    state-action-constraints {
+    
+        // Player at exactly one position
+        [sum_{?x : xpos, ?y : ypos} player-at(?x,?y)] == 1;
+        
+        // EAST, WEST, NORTH, SOUTH defined properly (unique and symmetric)
+        forall_{?x1 : xpos} [(sum_{?x2 : xpos} WEST(?x1,?x2)) <= 1];
+        forall_{?x1 : xpos} [(sum_{?x2 : xpos} EAST(?x1,?x2)) <= 1];
+        forall_{?y1 : ypos} [(sum_{?y2 : ypos} NORTH(?y1,?y2)) <= 1];
+        forall_{?y1 : ypos} [(sum_{?y2 : ypos} SOUTH(?y1,?y2)) <= 1];
+        forall_{?x1 : xpos, ?x2 : xpos} [ EAST(?x1,?x2) <=> WEST(?x2,?x1) ];
+        forall_{?y1 : ypos, ?y2 : ypos} [ SOUTH(?y1,?y2) <=> NORTH(?y2,?y1) ];
+
+        // Definition verification
+        [ sum_{?x : xpos} MIN-XPOS(?x) ] == 1;
+        [ sum_{?x : xpos} MAX-XPOS(?x) ] == 1;
+        [ sum_{?y : ypos} MIN-YPOS(?y) ] == 1;
+        [ sum_{?y : ypos} MAX-YPOS(?y) ] == 1;
+        [ sum_{?x : xpos, ?y : ypos} GOLD(?x,?y) ] == 1;
+        
+    };
+    
+}
+non-fluents nf_wumpus_inst_pomdp__1 {
+    domain = wumpus_pomdp;
+    objects {
+        xpos : {x1,x2,x3,x4};
+        ypos : {y1,y2,y3,y4};
+    };
+    non-fluents {
+        NORTH(y1,y2);
+        SOUTH(y2,y1);
+        NORTH(y2,y3);
+        SOUTH(y3,y2);
+        NORTH(y3,y4);
+        SOUTH(y4,y3);
+
+        EAST(x1,x2);
+        WEST(x2,x1);
+        EAST(x2,x3);
+        WEST(x3,x2);
+        EAST(x3,x4);
+        WEST(x4,x3);
+
+        MIN-XPOS(x1);
+        MAX-XPOS(x4);
+        MIN-YPOS(y1);
+        MAX-YPOS(y4);
+
+        GOLD(x2,y3);
+        WUMPUS(x1,y3);
+        PIT(x3,y1);
+        PIT(x3,y3);
+        PIT(x4,y4);
+    };
+}
+
+instance wumpus_inst_pomdp__1 {
+    domain = wumpus_pomdp;
+    non-fluents = nf_wumpus_inst_pomdp__1;
+    init-state {
+        player-at(x1,y1);
+    };
+    max-nondef-actions = 1;
+    horizon = 20;
+    discount = 1.0;
+}
