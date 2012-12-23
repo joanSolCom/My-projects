@@ -32,7 +32,17 @@
 		}
 		$i++;
 	}
+     
+    //Completes all the articles content in the array 
+	foreach($aInfoPosts as $index => $aInfoPost){
 
+		$url = $aInfoPost['link'];
+		$html = file_get_html($url);
+		$elements = $html->find(".post .entry-content p");
+		foreach($elements as $element){
+			$text = $text.$element->plaintext;
+		}
+		$aInfoPosts[$index]['text'] = $text;
+	}
 	var_dump($aInfoPosts);
-       
 ?>
