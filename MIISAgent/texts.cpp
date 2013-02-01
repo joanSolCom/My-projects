@@ -2,15 +2,19 @@
 
     /*Definition of the keywords*/
 
-    string texts::keywords[15]={"content","enroll","requirements","subjects",
+    string texts::keywords[KEYWORDS]={"content","enroll","requirements","subjects",
                             "master thesis","professors","general options"
-                            ,"scholarships","prizing","enrollment","goodbye",
+                            ,"scholarships","prizing","enter","goodbye",
                             "greeting","opthow","opcont","not valid"};
+
+    /*When we instantiate the class, the structures will be filled with the tests*/
 
     texts::texts() {
 
         this->init();
     }
+
+    /*Initialitizing the structures*/
 
     void texts::init(){
 
@@ -51,7 +55,7 @@
 
         this->textMap["scholarships"] = "There are available some scholarships that are for full time students. These students will have a monthly salary of 800€ and will be required to teach for 30 hours. Being a full time student means to not be working, and to consider the master as your main work. To get more information about this, please send a mail to vanessa.jimenez@upf.edu\n\n";
 
-        this->textMap["opthow"] = "What do you want to know? Do you want to know about the PRIZING? About the SCHOLARSHIPS? About the HOW to enter process? Or do you want to get back to the GENERAL OPTIONS?\n\n";
+        this->textMap["opthow"] = "What do you want to know? Do you want to know about the PRIZING? About the SCHOLARSHIPS? About the how to ENTER the master? Or do you want to get back to the GENERAL OPTIONS?\n\n";
 
         this->textMap["opcont"] = "Do you want to know about the core SUBJECTS? About the MASTER THESIS? About the PROFESSORS? Or do you want to go back to the GENERAL OPTIONS?\n\n";
 
@@ -62,12 +66,21 @@
 
     }
 
-    string texts::searchText(string keyword){
+    /*This function returns either the text that the agent has to say, or the mandatory transition that has to be done*/
+
+    string texts::searchText(string keyword, string array){
 
         string cleanKeyword = this->extractKeyword(keyword);
 
-        return this->textMap[cleanKeyword];
+        if(array == "textMap"){
+            return this->textMap[cleanKeyword];
+        }
+        else if(array == "mandatory"){
+            return this->mandatoryTransitions[cleanKeyword];
+        }
     }
+
+    /*We get the phrase, and return which keyword was said. If no keyword was said, we return that this was not valid*/
 
     string texts::extractKeyword(string phrase){
 

@@ -13,12 +13,12 @@ class texts{
 
         map<string, string> textMap;
         map<string, string> mandatoryTransitions;
-        static string keywords [15];
+        static string keywords [KEYWORDS];
 
 
         texts();
         void init();
-        string searchText(string keyword);
+        string searchText(string keyword,string array);
         string extractKeyword(string phrase);
 };
 

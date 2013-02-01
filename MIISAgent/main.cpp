@@ -1,38 +1,62 @@
 #include "texts.h"
 #include <iostream>
 
+/*Simple function that transforms the input string into lower case*/
+
 string lowerCase(string input){
 
-    for (int i=0;i<input.length();i++){
+    for (unsigned int i=0;i<input.length();i++){
         input[i]=tolower(input[i]);
     }
     return input;
 }
 
+/*The interaction*/
+
 void interaction(){
 
-    texts *agent = new texts();
+    /*Definition of some auxiliar variables*/
+
     string input="";
     string text = "";
     string mandatory = "";
     string lastText = "";
 
-    cout<<agent->searchText("greeting")<<"\n"<<endl;
-    cout<<agent->searchText("general options")<<"\n"<<endl;
-    lastText = agent->searchText("general options");
+    /*We create an instance of our agent*/
+
+    texts *agent = new texts();
+
+    /*We get the goodbye and notvalid texts*/
+
+    string goodbyeText = agent->searchText("goodbye","textMap");
+    string notValid = agent->searchText("not valid","textMap");
+
+    /*First Intervention of the agent*/
+
+    cout<<endl;
+    cout<<agent->searchText("greeting","textMap")<<"\n"<<endl;
+    cout<<agent->searchText("general options","textMap")<<"\n"<<endl;
+    lastText = agent->searchText("general options","textMap");
     cout<<"--->";
+
     getline(cin,input);
+
+    /*Everything the user says will be transformed into lower case*/
+
     input = lowerCase(input);
 
     while (1){
 
-        text = agent->searchText(input);
+        text = agent->searchText(input,"textMap");
 
+        /*If the user's phrase contains the word goodbye, we exit*/
 
-        if(text == "Goodbye, have a nice day"){
+        if(text == goodbyeText){
             break;
         }
-        else if(text=="I'm sorry, that is not a valid option; please pick one of the following options.\n\n"){
+        /*If the user introduced not valid text, we repeat the last text shown*/
+
+        else if(text == notValid){
 
             cout<<text<<endl;
             cout<<lastText<<endl;
@@ -43,11 +67,15 @@ void interaction(){
             lastText = text;
         }
 
-        mandatory = agent->mandatoryTransitions[input];
+        /*
+            If there is an unconditional transition, we show the text of the new state
+            without having the user to do anything.
+        */
+
+        mandatory = agent->searchText(input,"mandatory");
 
         if(mandatory != ""){
-            text = agent->searchText(mandatory);
-
+            text = agent->searchText(mandatory,"textMap");
             cout<<text<<endl;
             lastText = text;
         }
@@ -62,8 +90,6 @@ void interaction(){
 
 
 }
-
-
 
 
 int main(int argc, char *argv[])

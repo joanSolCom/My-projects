@@ -1,0 +1,38 @@
+--------------------------------
+MIIS Agent by Juan Soler Company
+--------------------------------
+
+This project is about implementing the MIIS agent we specified using a FSM in the last assignment.
+
+To do that, I implemented it using C++. This is a text-based agent that tells you about the MIIS 
+program.
+
+To execute the program, you only have to do:
+
+./MIISAgent
+
+If you have any trouble to execute the already compiled file, you can re-compile it using this commands:
+
+make clean
+make
+
+The source code is in the files 
+
+texts.h ---> Header File, where we can see the definition of the structures and global variables
+texts.cpp -> The source file, where the texts are assigned, and some functions are defined
+main.cpp --> The main, in this file, the execution is controlled, this is where the interaction
+	     between the user and the system is done.
+
+The system works as the user says the expected keywords. For a easy use of the program, this keywords
+are the words that are printed using upper cases.
+
+The user has to enter his/her phrase when the prompt looks like this:
+
+---> USERS TEXT
+
+In any point, if the user wants to exit the program, just by saying goodbye the system will exit.
+
+The texts are the same that were shown in the last assignment.
+
+The structures that have been used are associative arrays (in C++, called maps), to use the keywords
+to index the array which contains the full texts.
