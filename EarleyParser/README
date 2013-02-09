@@ -1,0 +1,30 @@
+Juan Soler Company----> Earley Parser
+
+This program contains a python implementation of the Earley parser. 
+To invoke this program, you simply need to execute this command:
+
+python earleyParser.py grammar.json "sentence to parse"
+
+The first parameter is the file where the main program is, the second is the
+name of the file where the grammar is and the last parameter is the sentence to parse.
+
+The grammar is written in json. This grammar recognises phrases like this:
+
+"I want to know about the subjects"
+"Tell me about the content"
+"About prizing"
+"Enrollment"
+"Tell me about subjects"
+"I want to know about prizing"
+
+To see more details, please look at the file itself.
+
+The output of the programm can be, either an error, because the sentence structure
+is not correct, or an error telling you that you introduced a unrecognized word,
+or the solution of the parsing process. This looks like this:
+
+CORRECT!!!:  ( -> S ., [0, 4], [(S -> VP ., [0, 4], [(VP -> Verb Objective-Pronoun NP ., [0, 4], [(Verb -> tell ., [0, 1]), (Objective-Pronoun -> me ., [1, 2]), (NP -> Prep Noun ., [2, 4], [(Prep -> about ., [2, 3]), (Noun -> content ., [3, 4])])])])])
+
+If you want to know how the process came to this conclusion, you can turn the debug mode on, by
+changing the value of the variable debug to 1, in the file earleyParser.py . This will output results of applying the different operators
+the Earley Parser algorithm uses.

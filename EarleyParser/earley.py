@@ -51,8 +51,8 @@ class Earley:
           if debug == 1:
             print "complete: ",state
 
-          #we've successfully parsed the input
-          if state.j == len(self.words):
+          #the input has been correctly parsed
+          if state.j == len(self.words) and state.i == 0 and state.left == '':
             print "CORRECT!!!: ",state
             nCompleted = nCompleted + 1
 
@@ -128,11 +128,11 @@ class Earley:
     if not self.word_pos:
       
       for l in self.grammar.keys():
-        r = self.grammar[l]
+        rules = self.grammar[l]
       
-        for alts in r:
+        for alternatives in rules:
       
-          for w in alts:
+          for w in alternatives:
       
             if not w in self.grammar:
       
@@ -141,12 +141,14 @@ class Earley:
 
               self.word_pos[w.lower()].append(l)
     
+    #We notify that the word is not in the parts of speech
     if not word.lower() in self.word_pos:
-      print "Unknown key",word
+      print "Unknown word",word
       sys.exit()
 
     return self.word_pos[word.lower()]
 
+  #to check if every word in the input is a part of speech
   def checkWords(self,words):
 
     for w in words:
